@@ -27,6 +27,12 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
+			if (format[i + 1] == '%')
+			{
+				print_char('%');
+				i++;
+			}
+
 			if (format[i + 1] == 'c')
 			{
 				chars_printed += print_char(va_arg(args, int));
