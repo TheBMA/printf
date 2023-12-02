@@ -29,26 +29,27 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '%')
 			{
-				print_char('%');
+				chars_printed += print_char('%');
 				i++;
 			}
-
-			if (format[i + 1] == 'c')
+			else if (format[i + 1] == 'c')
 			{
 				chars_printed += print_char(va_arg(args, int));
 				i++;
 			}
-
-			if (format[i + 1] == 's')
+			else if (format[i + 1] == 's')
 			{
 				chars_printed += print_str(va_arg(args, char*));
 				i++;
 			}
+			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+			{
+				chars_printed += print_number(va_arg(args, int));
+				i++;
+			}
 		}
 	}
-
 	va_end(args);
-
 	return (chars_printed);
 }
 
@@ -85,4 +86,36 @@ int print_str(char *str)
 	}
 
 	return (str_len);
+}
+
+
+/**
+ * print_number - a function that prints an integer.
+ * Prototype: int print_number(int n);
+ * @n: an integer.
+ * Return: the number of digits printed.
+ */
+
+int print_number(int n)
+{
+	int digits_printed = 0, i = 1;
+
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+	}
+
+	while ((n / i) >= 10)
+		i *= 10;
+
+	while (i >= 1)
+	{
+		_putchar((n / i) + '0');
+		digits_printed++;
+		n %= i;
+		i /= 10;
+	}
+
+	return (digits_printed);
 }

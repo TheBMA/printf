@@ -28,9 +28,9 @@ int main(void)
 	len = _printf("Percent:[%%]\n");
 	len2 = printf("Percent:[%%]\n");
 
-	/* decimal - undefined behaviour */
-	_printf("Len:[%d]\n", len);
-	printf("Len:[%d]\n", len2);
+	/* decimal - %i works for decimal, doesn't for octal or hexadecimal */
+	_printf("Length:[%d, %i]\n", len, len);
+	printf("Length:[%d, %i]\n", len2, len2);
 
 	return (0);
 }
