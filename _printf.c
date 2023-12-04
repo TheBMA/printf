@@ -61,9 +61,6 @@ int _printf(const char *format, ...)
 
 int print_char(char c)
 {
-	if (c == '\0')
-		return (0);
-
 	_putchar(c);
 
 	return (1);
