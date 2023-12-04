@@ -31,6 +31,8 @@ int main(void)
 	/* decimal - %i works for decimal, doesn't for octal or hexadecimal */
 	_printf("Length:[%d, %i]\n", len, len);
 	printf("Length:[%d, %i]\n", len2, len2);
+	_printf("Value of INT_MIN: [%d, %i]\n", INT_MIN, INT_MIN);
+	printf("Value of INT_MIN: [%d, %i]\n", INT_MIN, INT_MIN);
 
 	return (0);
 }

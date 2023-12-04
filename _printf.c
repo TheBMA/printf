@@ -98,49 +98,36 @@ int print_str(char *str)
 
 int print_number(int n)
 {
-	int digits_printed = 0, i = 1, rem;
+	int digits_printed = 0, i = 1, rem, m = n;
 
 	if (n == INT_MIN)
 	{
-		_putchar('-');
-		digits_printed++;
-		rem = n % 10;
+		rem = -(n % 10);
 		n /= 10;
-		n = -n;
-
-		while((n / i) >= 10)
-			i *= 10;
-
-		while(i >= 1)
-		{
-			_putchar((n / i) + '0');
-			digits_printed++;
-			n %= i;
-			i / 10;
-		}
-		_putchar(rem + '0');
-		digits_printed++;
 	}
 
-	else
+	if (n < 0)
 	{
-		if (n < 0)
-		{
-			_putchar('-');
-			digits_printed++;
-			n = -n;
-		}
-		
-		while ((n / i) >= 10)
-		i *= 10;
+		_putchar('-');
+		digits_printed++;
+		n = -n;
+	}
 
-		while (i >= 1)
-		{
-			_putchar((n / i) + '0');
-			digits_printed++;
-			n %= i;
-			i /= 10;
-		}
+	while ((n / i) >= 10)
+	i *= 10;
+
+	while (i >= 1)
+	{
+		_putchar((n / i) + '0');
+		digits_printed++;
+		n %= i;
+		i /= 10;
+	}
+
+	if (m == INT_MIN)
+	{
+		_putchar(rem + '0');
+		digits_printed++;
 	}
 
 	return (digits_printed);
