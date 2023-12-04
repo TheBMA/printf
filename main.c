@@ -38,5 +38,23 @@ int main(void)
 	_printf("Unknown:[%r]\n");
 	printf("Unknown:[%r]\n");
 
+	/* Empty string */
+	_printf("\n");
+	printf("\n");
+
+	/* Backslash character */
+	_printf("\\\n");
+	printf("\\\n");
+
+	/* single quotes */
+	_printf("hello 'd'\n");
+	printf("hello 'd'\n");
+
+	/* Null terminator */
+	printf("%c\n", '\0');
+
+	/* NULL pointer */
+	printf("%s\n", NULL);
+
 	return (0);
 }
