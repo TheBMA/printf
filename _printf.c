@@ -77,15 +77,15 @@ int print_char(char c)
 
 int print_str(char *str)
 {
-	int i, str_len = 0;
+	int i, chars_printed = 0;
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		_putchar(str[i]);
-		str_len++;
+		chars_printed++;
 	}
 
-	return (str_len);
+	return (chars_printed);
 }
 
 
@@ -98,23 +98,49 @@ int print_str(char *str)
 
 int print_number(int n)
 {
-	int digits_printed = 0, i = 1;
+	int digits_printed = 0, i = 1, rem;
 
-	if (n < 0)
+	if (n == INT_MIN)
 	{
 		_putchar('-');
+		digits_printed++;
+		rem = n % 10;
+		n /= 10;
 		n = -n;
+
+		while((n / i) >= 10)
+			i *= 10;
+
+		while(i >= 1)
+		{
+			_putchar((n / i) + '0');
+			digits_printed++;
+			n %= i;
+			i / 10;
+		}
+		_putchar(rem + '0');
+		digits_printed++;
 	}
 
-	while ((n / i) >= 10)
+	else
+	{
+		if (n < 0)
+		{
+			_putchar('-');
+			digits_printed++;
+			n = -n;
+		}
+		
+		while ((n / i) >= 10)
 		i *= 10;
 
-	while (i >= 1)
-	{
-		_putchar((n / i) + '0');
-		digits_printed++;
-		n %= i;
-		i /= 10;
+		while (i >= 1)
+		{
+			_putchar((n / i) + '0');
+			digits_printed++;
+			n %= i;
+			i /= 10;
+		}
 	}
 
 	return (digits_printed);
