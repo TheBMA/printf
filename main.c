@@ -34,5 +34,9 @@ int main(void)
 	_printf("Value of INT_MIN: [%d, %i]\n", INT_MIN, INT_MIN);
 	printf("Value of INT_MIN: [%d, %i]\n", INT_MIN, INT_MIN);
 
+	/* Unknown values */
+	_printf("Unknown:[%r]\n");
+	printf("Unknown:[%r]\n");
+
 	return (0);
 }
