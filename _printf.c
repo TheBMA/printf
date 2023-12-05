@@ -62,6 +62,17 @@ int _printf(const char *format, ...)
 
 int print_char(char c)
 {
+	if (c == 0)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('i');
+		_putchar('l');
+		_putchar(')');
+
+		return (0);
+	}
+
 	_putchar(c);
 
 	return (1);
@@ -79,6 +90,16 @@ int print_str(char *str)
 {
 	int i, chars_printed = 0;
 
+	if (str == NULL)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('i');
+		_putchar('l');
+		_putchar(')');
+
+		return (0);
+	}
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		_putchar(str[i]);

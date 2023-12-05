@@ -51,8 +51,13 @@ int main(void)
 
 	/* Single % sign */
 	printf("%\n");
-	_printf("%\n");
 	_printf("Hello % world\n");
+
+	/* if va_arg == NULL) */
+	printf("%s\n", NULL);
+	_printf("%s\n", NULL);
+	printf("%c\n",  0);
+	_printf("%c\n", 0);
 
 	return (0);
 }
