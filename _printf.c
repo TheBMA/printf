@@ -15,9 +15,7 @@ int _printf(const char *format, ...)
 {
 	int chars_printed = 0, i;
 	va_list args;
-
 	va_start(args, format);
-
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
@@ -53,6 +51,7 @@ int _printf(const char *format, ...)
 	return (chars_printed);
 }
 
+
 /**
  * print_char - function that prints a char.
  * Prototype: int print_char(char c);
@@ -62,19 +61,7 @@ int _printf(const char *format, ...)
 
 int print_char(char c)
 {
-	if (c == 0)
-	{
-		_putchar('(');
-		_putchar('n');
-		_putchar('i');
-		_putchar('l');
-		_putchar(')');
-
-		return (0);
-	}
-
 	_putchar(c);
-
 	return (1);
 }
 
@@ -89,23 +76,11 @@ int print_char(char c)
 int print_str(char *str)
 {
 	int i, chars_printed = 0;
-
-	if (str == NULL)
-	{
-		_putchar('(');
-		_putchar('n');
-		_putchar('i');
-		_putchar('l');
-		_putchar(')');
-
-		return (0);
-	}
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		_putchar(str[i]);
 		chars_printed++;
 	}
-
 	return (chars_printed);
 }
 
@@ -120,23 +95,19 @@ int print_str(char *str)
 int print_number(int n)
 {
 	int digits_printed = 0, i = 1, rem, m = n;
-
 	if (n == INT_MIN)
 	{
 		rem = -(n % 10);
 		n /= 10;
 	}
-
 	if (n < 0)
 	{
 		_putchar('-');
 		digits_printed++;
 		n = -n;
 	}
-
 	while ((n / i) >= 10)
 	i *= 10;
-
 	while (i >= 1)
 	{
 		_putchar((n / i) + '0');
@@ -144,15 +115,14 @@ int print_number(int n)
 		n %= i;
 		i /= 10;
 	}
-
 	if (m == INT_MIN)
 	{
 		_putchar(rem + '0');
 		digits_printed++;
 	}
-
 	return (digits_printed);
 }
+
 
 /**
  * convert_to_binary - function that returns an integer in binary.
@@ -164,7 +134,6 @@ int print_number(int n)
 int convert_to_binary(int n)
 {
 	int rem, bin = 0, i = 1;
-
 	while (n != 0)
 	{
 		rem = n % 2;
