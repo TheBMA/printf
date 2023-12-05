@@ -34,10 +34,6 @@ int main(void)
 	_printf("Value of INT_MIN: [%d, %i]\n", INT_MIN, INT_MIN);
 	printf("Value of INT_MIN: [%d, %i]\n", INT_MIN, INT_MIN);
 
-	/* Unknown values */
-	_printf("Unknown:[%r]\n");
-	printf("Unknown:[%r]\n");
-
 	/* Empty string */
 	_printf("\n");
 	printf("\n");
@@ -50,11 +46,8 @@ int main(void)
 	_printf("hello 'd'\n");
 	printf("hello 'd'\n");
 
-	/* Null terminator */
-	printf("%c\n", '\0');
-
-	/* NULL pointer */
-	printf("%s\n", NULL);
+	/* Binary converter */
+	_printf("%b\n", 98);
 
 	return (0);
 }

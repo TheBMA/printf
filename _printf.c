@@ -39,6 +39,8 @@ int _printf(const char *format, ...)
 			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 				chars_printed += print_number(va_arg(args, int));
 
+			else if (format[i + 1] == 'b')
+				chars_printed += print_number(convert_to_binary(va_arg(args, int)));
 			else
 			{
 				_putchar(format[i]);
@@ -132,3 +134,23 @@ int print_number(int n)
 	return (digits_printed);
 }
 
+/**
+ * convert_to_binary - function that returns an integer in binary.
+ * Prototype: int convert_to_binary(int n);
+ * @n: an integer.
+ * Return: binary version of integer
+ */
+
+int convert_to_binary(int n)
+{
+	int rem, bin = 0, i = 1;
+
+	while (n != 0)
+	{
+		rem = n % 2;
+		n /= 2;
+		bin += rem * i;
+		i *= 10;
+	}
+	return (bin);
+}
