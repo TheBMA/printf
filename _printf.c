@@ -123,7 +123,7 @@ int print_number(int n)
 		n %= i;
 		i /= 10;
 	}
-	
+
 	if (m == INT_MIN)
 	{
 		_putchar(rem + '0');
