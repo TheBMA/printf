@@ -49,5 +49,10 @@ int main(void)
 	/* Binary converter */
 	_printf("%b\n", 98);
 
+	/* Single % sign */
+	printf("%\n");
+	_printf("%\n");
+	_printf("Hello % world\n");
+
 	return (0);
 }
