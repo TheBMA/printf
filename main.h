@@ -11,6 +11,6 @@ int _putchar(char c);
 int print_char(char c);
 int print_str(char *str);
 int print_number(int n);
-int print_binary(unsigned int n);
+void print_binary(unsigned int n, int *digits_printed);
 
 #endif

@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 				else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 					chars_printed += print_number(va_arg(args, int));
 				else if (format[i + 1] == 'b')
-					chars_printed += print_binary(va_arg(args, unsigned int));
+					print_binary(va_arg(args, unsigned int), &chars_printed);
 				else
 				{
 					_putchar(format[i]);
@@ -135,22 +135,29 @@ int print_number(int n)
 
 
 /**
- * print_binary - function that returns an integer in binary.
- * Prototype: int print_binary(unsigned int n);
- * @n: an integer.
- * Return: binary version of integer
+ * print_binary - function that prints an integer in binary.
+ * Prototype: void print_binary(unsigned int n, int *digits_printed);
+ * @n: the integer to print in binary.
+ * @digits_printed: a pointer to chars_printed.
+ * Return: void.
  */
 
-int print_binary(unsigned int n)
+void print_binary(unsigned int n, int *digits_printed)
 {
-	int i = 0;
-
-	if (n > 0)
+	if (n > 1)
 	{
-		print_binary(n / 2);
+		print_binary((n / 2), digits_printed);
 		_putchar((n % 2) + '0');
-		i++;
+		(*digits_printed)++;
 	}
+	else
+	{
+		if (n == 0)
+			_putchar('0');
 
-	return (i);
+		if (n == 1)
+			_putchar('1');
+
+		(*digits_printed)++;
+	}
 }
