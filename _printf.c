@@ -16,6 +16,8 @@ int _printf(const char *format, ...)
 	int chars_printed = 0, i;
 	va_list args;
 
+	if (format == NULL)
+		return (0);
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -26,26 +28,23 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			if (format[i + 1] > 32 && format[i + 1] < 127)
+			if (format[i + 1] == '%')
+				chars_printed += print_char('%');
+			else if (format[i + 1] == 'c')
+				chars_printed += print_char(va_arg(args, int));
+			else if (format[i + 1] == 's')
+				chars_printed += print_str(va_arg(args, char*));
+			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+				chars_printed += print_number(va_arg(args, int));
+			else if (format[i + 1] == 'b')
+				print_binary(va_arg(args, unsigned int), &chars_printed);
+			else if (format[i + 1] > 32 && format[i + 1] < 127)
 			{
-				if (format[i + 1] == '%')
-					chars_printed += print_char('%');
-				else if (format[i + 1] == 'c')
-					chars_printed += print_char(va_arg(args, int));
-				else if (format[i + 1] == 's')
-					chars_printed += print_str(va_arg(args, char*));
-				else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-					chars_printed += print_number(va_arg(args, int));
-				else if (format[i + 1] == 'b')
-					print_binary(va_arg(args, unsigned int), &chars_printed);
-				else
-				{
-					_putchar(format[i]);
-					_putchar(format[i + 1]);
-					chars_printed += 2;
-				}
-				i++;
+				_putchar(format[i]);
+				_putchar(format[i + 1]);
+				chars_printed += 2;
 			}
+			i++;
 		}
 	}
 	va_end(args);
@@ -78,6 +77,17 @@ int print_char(char c)
 int print_str(char *str)
 {
 	int i, chars_printed = 0;
+
+	if (str == (char *)0)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('u');
+		_putchar('l');
+		_putchar('l');
+		_putchar(')');
+		return (6);
+	}
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
