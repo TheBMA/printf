@@ -11,6 +11,7 @@ int main(void)
 {
         int len;
         int len2;
+		long long int res = (long long int)INT_MAX * 2;
 
         /* simple sentence - works */
         _printf("Let's try to printf a simple sentence.\n");
@@ -47,13 +48,12 @@ int main(void)
         printf("hello 'd'\n");
 
         /* Binary converter */
-        _printf("%b\n", 98);
 		_printf("%b\n", 1024);
 		_printf("%b\n", -1024);
-		_printf("%b\n", 0);
 		_printf("%b\n", UINT_MAX);
-		_printf("%b %b\n", 1024, 1);
-		_printf("%b %b %b\n", INT_MAX, INT_MAX, 5);
+		_printf("There is %b bytes in %b KB\n", 1024, 1);
+		_printf("%b - %b = %b\n", 2048, 1024, 1024);
+		_printf("%b + %b = %b\n", INT_MAX, INT_MAX, res);
 
-        return (0);
+		return (0);
 }
